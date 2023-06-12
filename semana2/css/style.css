@@ -1,0 +1,21 @@
+body {
+font-family: Arial, sans-serif;
+margin: 20px;
+}
+
+h1 {
+color: #333;
+}
+
+h2 {
+color: #666;
+}
+
+p {
+color: #999;
+}
+
+img {
+max-width: 300px;
+border-radius: 50%;
+}
