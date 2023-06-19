@@ -1,13 +1,13 @@
-# !/bin/bash
-# Script instalation Python3.10 and OpenCV Dev
-# 19/06/2023
+# # !/bin/bash
+# # Script instalation Python3.10 and OpenCV Dev
+# # 19/06/2023
 
-##################################################################
-#                      Instalação Python                         #
-##################################################################
-
-PYTHON_VERSION="3.10.12"  # Altere para a versão desejada do Python
+PYTHON_VERSION="3.10.10"  # Altere para a versão desejada do Python
 VERSION="3.10"
+
+# ##################################################################
+# #                      Instalação Python                         #
+# ##################################################################
 
 # Verificar se a versão específica do Python já está instalada
 if command -v python${VERSION} &>/dev/null; then
@@ -44,6 +44,7 @@ else
 
     # Verificar a versão do Python instalada
     echo "Python ${PYTHON_VERSION} instalado com sucesso"
+
 fi
 
 # Verificar se as variáveis de ambiente já estão configuradas
@@ -65,12 +66,11 @@ else
     echo "Configuração das variáveis de ambiente concluída."
 fi
 
+################################################################
+#                  Instalação Miniconda                         #
+################################################################
 
-##################################################################
-#                      Instalação Miniconda                      #
-##################################################################
-
-sudo apt update
+# sudo apt update
 
 # Se mudar a versão do python mude a versão do miniconda
 CONDA_INSTALLER_URL="https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86_64.sh"
@@ -104,35 +104,40 @@ else
     echo "Instalação do Miniconda concluída. "
 fi
 
+##################################################################
+#                      Instalação OpenCV                         #
+##################################################################
+
 # Criação Ambiente Conda e Instação OpenCV
 echo "Iniciando o ambiente Conda..."
 cd $HOME/miniconda/
-conda init
-conda activate base
-conda config --set auto_activate_base false
-conda env list
+pwd
 
 # Nome Ambiente Conda
 CONDA_ENV_NAME="PV23" # Mude o nome do ambiente caso queire criar um novo ambiente
 
 # Verificar se o ambiente Conda já existe
 if conda env list | grep -q "$CONDA_ENV_NAME"; then
-    echo "O ambiente Conda '$CONDA_ENV_NAME' já existe."
+    echo "O ambiente Conda '$CONDA_ENV_NAME' já existe." \
+
+    # Ativar o ambiente Conda
+    echo "Ativando o ambiente Conda '$CONDA_ENV_NAME'..."
+    conda init bash
+    conda activate $CONDA_ENV_NAME
+    cd $HOME/miniconda/envs/$CONDA_ENV_NAME
+    conda env list
+
 else
-    echo "Criando o ambiente Conda '$CONDA_ENV_NAME'..."
-    conda create -y -n "$CONDA_ENV_NAME" -y
+    echo "Criando o ambiente Conda '$CONDA_ENV_NAME'..." \
+    # Mudando o diretorio para ambiente conda
+    cd $HOME/miniconda/envs/
+    pwd
+    conda create -y -n "$CONDA_ENV_NAME" -y python=$VERSION
+    conda init bash
+    conda activate $CONDA_ENV_NAME
+    cd $HOME/miniconda/envs/$CONDA_ENV_NAME
+    source conda env list
 fi
-
-##################################################################
-#                      Instalação OpenCV                         #
-##################################################################
-
-# Mudando o diretorio para ambiente conda
-cd $HOME/miniconda/envs/$CONDA_ENV_NAME
-
-# Ativar o ambiente Conda
-echo "Ativando o ambiente Conda '$CONDA_ENV_NAME'..."
-conda activate "$CONDA_ENV_NAME"
 
 sudo apt update
 
@@ -143,12 +148,16 @@ sudo apt install build-essential cmake git pkg-config libgtk-3-dev \
    libtbb2 libtbb-dev libdc1394-dev libopenexr-dev \
    libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev
 
-opencv_build="~/opencv_build"
+cd $HOME
+opencv_build="opencv_build"
+pwd
 
-if [-d opencv_build]; then
-    cd $opencv_build
+if [ -d "$opencv_build" ]; then
+    cd "$opencv_build"
+    pwd
 else
-    mkdir $opencv_build && cd $opencv_build
+    mkdir "$opencv_build" && cd "$opencv_build"
+    pwd
 fi
 
 # Verificar se o Git está instalado
@@ -170,7 +179,7 @@ fi
 git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
 
-cd ~/$opencv_build/opencv
+cd ~/opencv_build/opencv
 mkdir -p build && cd build
 
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
@@ -185,3 +194,16 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 NUM_NUCLEOS=$(nproc)
 make -j$NUM_NUCLEOS
 sudo make install
+
+# Verificar se a instalação foi concluída com sucesso
+if [ $? -eq 0 ]; then
+    echo "OpenCV instalado com sucesso."
+else
+    echo "Falha ao instalar o OpenCV."
+fi
+
+python$VERSION -c "import cv2; print(cv2.__version__)"
+python$VERSION conda list
+pkg-config --modversion opencv4
+
+exit 0
