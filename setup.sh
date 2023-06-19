@@ -1,4 +1,6 @@
 # !/bin/bash
+# Script instalation Python3.10 and OpenCV Dev
+# 19/06/2023
 
 ##################################################################
 #                      Instalação Python                         #
@@ -70,6 +72,7 @@ fi
 
 sudo apt update
 
+# Se mudar a versão do python mude a versão do miniconda
 CONDA_INSTALLER_URL="https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86_64.sh"
 CONDA_INSTALLER_FILE="Miniconda3-py310_23.3.1-0-Linux-x86_64.sh"
 INSTALL_DIR="$HOME/miniconda"
