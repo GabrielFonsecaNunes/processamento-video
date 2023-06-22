@@ -1,21 +1,72 @@
+/* Estilos CSS para o menu */
+/* Estilos CSS para o menu */
+.top-menu {
+  background-color: #f2f2f2;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  justify-content: flex-start; /* Alterado para posicionar o menu à esquerda */
+  margin-bottom: 20px; /* Adicionado espaçamento abaixo do menu */
+}
+
+.menu-icon {
+  cursor: pointer;
+  margin-right: 10px; /* Adicionado espaçamento entre o ícone do menu e os itens do menu */
+}
+
+.menu-items {
+  position: absolute;
+  background-color: #f2f2f2;
+  top: 100%;
+  left: 0; /* Alterado para posicionar o menu à esquerda */
+  width: 200px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.menu-items.show {
+  max-height: 200px;
+}
+
+.menu-items ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-items li {
+  padding: 10px;
+}
+
+.menu-items a {
+  text-decoration: none;
+  color: #333;
+}
+
+.container {
+  margin-top: 20px; /* Adicionado espaçamento entre o menu e o conteúdo abaixo */
+}
+
+
 body {
-font-family: Arial, sans-serif;
-margin: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 20px;
 }
 
-h1 {
-color: #333;
+.container {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
-h2 {
-color: #666;
-}
-
-p {
-color: #999;
-}
-
-img {
-max-width: 300px;
-border-radius: 50%;
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
 }
