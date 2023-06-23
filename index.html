@@ -3,14 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Atividade 1</title>
-  <link rel="stylesheet" type="text/css" href="semana2/Atividade1/css/style.css">
+  <link rel="stylesheet" type="text/css" href="semana2/Atividade1/page/css/style.css">
 </head>
 <body>
   <div class="container">
-    <h2>Integrantes</h2>
-    <p>Danilo ...</p>
-    <p>Gabriel da Fonseca Nunes<p>
-    <p>Thiago ...<p>
+    <h1>Integrantes</h1>
+    <p>Danilo Misura de Oliveira - 11006514</p>
+    <p>Gabriel da Fonseca Nunes - 11201921456<p>
+    <p>Thiago ... - 112017<p>
+  </div>
+
+  <div class="section">
+    <h1 class="section-title">Anexos</h1>
+    <p class="section-content">
+    <p> 
+      <a href="https://moodle.ufabc.edu.br/pluginfile.php/576663/mod_resource/content/2/L1_parte1_ambiente_n_opencv.txt" download>
+        Configuração Ambiente Miniconda e OpenCV 4.7para o Ubuntu 22.04
+      </a>
+    </p>
+      <a href="semana2/Atividade1/Lab1_arquivos.zip" download>Arquivos Lab 1</a>
+    </p>
   </div>
 
   <h1>Atividade 1</h1>
@@ -23,7 +35,7 @@
       O objetivo deste laboratório é introduzir os fundamentos do processamento de vídeo utilizando 
       a biblioteca OpenCV e realizar atividades iniciais de captura de imagem e vídeo.
     </p>
-    <p class="section-content">
+    <p class="section-content">      
       Nesta primeira parte do laboratório, iremos preparar o ambiente e executar as atividades iniciais. 
       Em seguida, na parte 2, vamos explorar o processamento básico de imagens e vídeos, estudando diferentes
       operações por meio de programas fornecidos. Na parte 3, iremos obter fotos e vídeos utilizando uma webcam,
@@ -44,20 +56,53 @@
         Além disso, iremos aprender sobre diferentes aspectos, como a velocidade de exibição das imagens em vídeo, a alteração da imagem
         exibida em tempo real, e a realização de operações de processamento de imagem nos programas estudados.
       </p>
-      
-      <div class="code-container" id="component-1">
-        <textarea readonly></textarea>
-        <button class="copy-button" onclick="copyCode('component-1')">Copiar</button>
-      </div>
-
     </p>
   </div>
 
   <div class="section">
-    <h2 class="section-title">Materiais e Métodos</h2>
+    <h2 class="section-title">Metodologia</h2>
     <p class="section-content">
-      Descreva os materiais e métodos utilizados no processo de processamento de vídeo.
-    </p>
+      Acesse o Moodle e siga as instruções fornecidas no arquivo "L1_parte1_ambiente_n_opencv.txt" para preparar o ambiente 
+      de desenvolvimento no Ubuntu com o OpenCV. Baixe os arquivos do Laboratório 1 - Parte 2 para a sua pasta no computador.
+      Execute cada um dos programas fornecidos nas atividades B, C e D da parte 2 do laboratório, conforme as instruções específicas. 
+      Observe os resultados obtidos e faça as modificações solicitadas em cada programa, documentando as alterações realizadas e explicando
+      detalhadamente as soluções encontradas. Utilize os programas corrigidos da parte 2 para obter as fotos e vídeos solicitados na parte 3 
+      do laboratório. Grave os arquivos no computador, garantindo que sejam individuais e que correspondam às atividades propostas. Utilize um 
+      editor de imagem, se necessário, para compor as fotos individuais em uma foto geral e para criar uma foto-montagem com os avatares da equipe.
+    </p class="section-content">
+
+    <h2 class="section-title">Materiais</h2>
+
+    
+    <p class="section-content">
+      Segue abaixo os materias para o desenvolvimento da pratica feita no laboratório juntamente com sua descrição
+    </p class="section-content">  
+    <p class="section-content">
+      <ul class="section-content">
+        <li>Sistema Operacional: Ubuntu 22.04</li>
+        <li>Equipamento: Webcam Digital Usb 8Mb</li>
+        <li>Linguagem:Python 3.10+</li>
+        <li>Bibliotecas:OpenCV==4.7, Numpy==1.19.5</li>
+        <li>IDE: Visual Studio Code</li>
+      </ul>
+    </p class="section-content">  
+  </div>
+
+  <div class="code-container" id="component-1">
+    <textarea readonly>
+import numpy as np
+import cv2 as cv
+
+img = cv.imread('messi5.jpg',0)
+cv.imshow('image',img)
+k = cv.waitKey(0)
+if k == 27:         # wait for ESC key to exit
+cv.destroyAllWindows()
+elif k == ord('s'): # wait for 's' key to save and exit
+cv.imwrite('messigray.png',img)
+cv.destroyAllWindows()
+    </textarea>
+    <button class="copy-button" onclick="copyCode('component-1')">Copiar</button>
   </div>
 
   <div class="section">
@@ -70,18 +115,19 @@
   <div class="section">
     <h2 class="section-title">Conclusões e Comentários Finais</h2>
     <p class="section-content">
-      Faça as conclusões finais com base nos resultados e comente sobre possíveis melhorias ou próximos passos.
+      Neste laboratório, iniciamos os trabalhos com o OpenCV no ambiente Ubuntu, explorando o processamento de vídeo por meio de diferentes 
+      operações. Através da leitura de imagens e vídeos, captura de imagens da câmera e gravação de vídeos, pudemos aprender sobre o uso básico
+      da biblioteca OpenCV e suas funcionalidades.
+
+      Durante as atividades, foram realizadas alterações nos programas fornecidos para melhorar a velocidade de exibição das imagens, permitir o
+      salvamento de imagens da câmera em arquivos, ajustar as configurações de gravação de vídeos e garantir que as imagens gravadas estivessem adequadas.
+
+      Através dessas atividades, foi possível obter conhecimentos fundamentais para o processamento de vídeo e adquirir experiência prática na utilização
+      das ferramentas do OpenCV. Essas habilidades serão essenciais para o desenvolvimento de projetos futuros relacionados ao processamento de vídeo.
     </p>
   </div>
 
-  <div class="section">
-    <h2 class="section-title">Anexos</h2>
-    <p class="section-content">
-      <a href="https://moodle.ufabc.edu.br/pluginfile.php/576663/mod_resource/content/2/L1_parte1_ambiente_n_opencv.txt" download>Tutorial Configuração Ambiente Python</a>
-    </p>
-  </div>
-
-  <script src="semana2/Atividade1/src/script.js"></script>
+  <script src="semana2/Atividade1/page/src/script.js"></script>
 
   <div class="references">
     <h2 class="references-title">Referências</h2>
@@ -94,4 +140,5 @@
     </ol>
   </div>
 </body>
+
 </html>
